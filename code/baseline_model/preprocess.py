@@ -28,6 +28,7 @@ import time
 from collections import Counter
 from tqdm import tqdm
 from multiprocessing import Pool
+from code.vincent_model.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
 
 
 def precision_recall_f1(prediction, ground_truth):
@@ -235,16 +236,17 @@ def re_find_fake_answer(line):
 
 
 def find_fake_answer_for_file(filename):
-    lines = open(filename).readlines()
+    lines = open(filename, encoding="utf-8-sig").readlines()
     p = Pool(30)
     results = p.map(re_find_fake_answer, lines)
-    fout = open('data/train_with_answer.jsonl', 'w')
+    fout = open('data/train_with_answer.jsonl', 'w', encoding="utf-8-sig")
     for res in results:
         fout.write(json.dumps(res, ensure_ascii=False) + '\n')
 
 
 if __name__ == '__main__':
     stime = time.time()
-    find_fake_answer_for_file('data/2500.train.jsonl')
+    train_file = f'{PROCESSED_DATA_DIR}/train.jsonl'
+    find_fake_answer_for_file(train_file)
     etime = time.time()
     print(f'used time: {etime - stime}')
