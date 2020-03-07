@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import json
 import sys
+import json
 import pandas as pd
 from code.vincent_model.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
 
@@ -69,7 +69,6 @@ if __name__ == '__main__':
     context_file = f'{RAW_DATA_DIR}/NCPPolicies_context_20200301.csv'
     train_file = f'{RAW_DATA_DIR}/NCPPolicies_train_20200301.csv'
     test_file = f'{RAW_DATA_DIR}/NCPPolicies_test.csv'
-
     retrival_file = f'{PROCESSED_DATA_DIR}/query_docids_v1.csv'
 
     stat_length(context_file)
