@@ -19,6 +19,7 @@ This module finds the most related paragraph of each document according to recal
 """
 
 import sys
+
 if sys.version[0] == '2':
     reload(sys)
     sys.setdefaultencoding("utf-8")
@@ -27,7 +28,6 @@ import time
 from collections import Counter
 from tqdm import tqdm
 from multiprocessing import Pool
-
 
 
 def precision_recall_f1(prediction, ground_truth):
@@ -125,14 +125,14 @@ def find_best_question_match(doc, question, with_score=False):
     for p_idx, para_tokens in enumerate(doc['segmented_paragraphs']):
         if len(question) > 0:
             related_score = metric_max_over_ground_truths(recall,
-                    para_tokens,
-                    question)
+                                                          para_tokens,
+                                                          question)
         else:
             related_score = 0
 
         if related_score > max_related_score \
                 or (related_score == max_related_score \
-                and len(para_tokens) < most_related_para_len):
+                    and len(para_tokens) < most_related_para_len):
             most_related_para = p_idx
             max_related_score = related_score
             most_related_para_len = len(para_tokens)
@@ -233,6 +233,7 @@ def re_find_fake_answer(line):
         sample['answer']['span'] = best_match_span
     return sample
 
+
 def find_fake_answer_for_file(filename):
     lines = open(filename).readlines()
     p = Pool(30)
@@ -241,8 +242,9 @@ def find_fake_answer_for_file(filename):
     for res in results:
         fout.write(json.dumps(res, ensure_ascii=False) + '\n')
 
+
 if __name__ == '__main__':
     stime = time.time()
     find_fake_answer_for_file('data/2500.train.jsonl')
     etime = time.time()
-    print(f'used time: {etime-stime}')
+    print(f'used time: {etime - stime}')
