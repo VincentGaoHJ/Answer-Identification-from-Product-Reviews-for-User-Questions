@@ -3,8 +3,10 @@
 
 import json
 
+
 def to_english(string):
     return ' '.join(list(string))
+
 
 def convert_to_squad(filepath):
     """Convert to squad-like dataset."""
@@ -18,9 +20,19 @@ def convert_to_squad(filepath):
             print('no sapn')
             continue
         span = datum['answer']['span']
-        span = [span[0]*2, span[1]*2]
-        answer = context[span[0]:span[1]+1]
-        ex = {'title': 'fake title','paragraphs':[{'context': context, "qas":[{"answers": [{"answer_start": span[0], "text": answer}], 'question': query, 'id': datum['qid']}]}]}
+        span = [span[0] * 2, span[1] * 2]
+        answer = context[span[0]:span[1] + 1]
+        ex = {'title': 'fake title',
+              'paragraphs': [{
+                  'context': context,
+                  "qas": [{
+                      "answers": [{
+                          "answer_start": span[0],
+                          "text": answer}],
+                      'question': query,
+                      'id': datum['qid']
+                  }]
+              }]}
         rv['data'].append(ex)
     json.dump(rv, open('data/train_squad.json', 'w'), indent=2, ensure_ascii=False)
 
@@ -31,11 +43,21 @@ def convert_test_to_squad(filepath):
         datum = json.loads(line)
         context = to_english(datum['context'])
         query = to_english(datum['query'])
-        ex = {'title': 'fake title','paragraphs':[{'context': context, "qas":[{"answers": [{"answer_start": 0, "text": ''}], 'question': query, 'id': datum['qid']}]}]}
+        ex = {'title': 'fake title',
+              'paragraphs': [{
+                  'context': context,
+                  "qas": [{
+                      "answers": [{
+                          "answer_start": 0,
+                          "text": ''}],
+                      'question': query,
+                      'id': datum['qid']
+                  }]
+              }]}
         rv['data'].append(ex)
     json.dump(rv, open('data/test_squad.json', 'w'), indent=2, ensure_ascii=False)
 
 
 if __name__ == '__main__':
-    #convert_to_squad('data/train_answer.jsonl')
+    convert_to_squad('data/train_answer.jsonl')
     convert_test_to_squad('data/test.jsonl')

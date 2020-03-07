@@ -239,7 +239,7 @@ def find_fake_answer_for_file(filename):
     lines = open(filename, encoding="utf-8-sig").readlines()
     p = Pool(30)
     results = p.map(re_find_fake_answer, lines)
-    fout = open('data/train_with_answer.jsonl', 'w', encoding="utf-8-sig")
+    fout = open(f'{PROCESSED_DATA_DIR}/train_answer.jsonl', 'w', encoding="utf-8-sig")
     for res in results:
         fout.write(json.dumps(res, ensure_ascii=False) + '\n')
 
