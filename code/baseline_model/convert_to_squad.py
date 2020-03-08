@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import json
-from code.vincent_model.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
+from code.vincent_model.config import PROCESSED_DATA_DIR
 
 
 def to_english(string):

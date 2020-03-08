@@ -15,6 +15,8 @@
 # limitations under the License.
 """ Finetuning the library models for question-answering on SQuAD (DistilBERT, Bert, XLM, XLNet)."""
 
+from code.vincent_model.config import PROCESSED_DATA_DIR, MODEL_DIR
+
 
 import argparse
 import glob
@@ -856,4 +858,22 @@ def main():
 
 
 if __name__ == "__main__":
+    # main()
+    import sys
+
+    SQUAD_DIR = ".\\SQUAD_DIR"
+    sys.argv[1:] = ["--model_type=bert",
+                    "--model_name_or_path=bert-base-chinese",
+                    "--do_train",
+                    "--do_eval",
+                    "--do_lower_case",
+                    "--train_file={}\\train_squad.json".format(PROCESSED_DATA_DIR),
+                    "--predict_file={}\\test_squad.json".format(PROCESSED_DATA_DIR),
+                    "--learning_rate=3e-5",
+                    "--num_train_epochs=1.0",
+                    "--max_seq_length=384",
+                    "--doc_stride=128",
+                    "--output_dir={}".format(MODEL_DIR),
+                    "--overwrite_output_dir"]
+
     main()
