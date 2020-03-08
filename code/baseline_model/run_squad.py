@@ -861,16 +861,16 @@ if __name__ == "__main__":
     # main()
     import sys
 
-    SQUAD_DIR = ".\\SQUAD_DIR"
+    model_name = "bert-base-chinese"
     sys.argv[1:] = ["--model_type=bert",
-                    "--model_name_or_path=bert-base-chinese",
+                    "--model_name_or_path={}".format(model_name),
                     "--do_train",
                     "--do_eval",
                     "--do_lower_case",
                     "--train_file={}\\train_squad.json".format(PROCESSED_DATA_DIR),
                     "--predict_file={}\\test_squad.json".format(PROCESSED_DATA_DIR),
                     "--learning_rate=3e-5",
-                    "--num_train_epochs=1.0",
+                    "--num_train_epochs=2.0",
                     "--max_seq_length=384",
                     "--doc_stride=128",
                     "--output_dir={}".format(MODEL_DIR),
