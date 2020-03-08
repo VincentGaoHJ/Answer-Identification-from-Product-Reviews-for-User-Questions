@@ -241,7 +241,6 @@ def find_fake_answer_for_file(filename, output_file):
     results = p.map(re_find_fake_answer, lines)
     fout = open(output_file, 'w', encoding="utf-8-sig")
     for res in results:
-        print(res)
         fout.write(json.dumps(res, ensure_ascii=False) + '\n')
 
 
@@ -249,7 +248,7 @@ if __name__ == '__main__':
     stime = time.time()
     train_file = f'{PROCESSED_DATA_DIR}/train.jsonl'
     train_answer_file = f'{PROCESSED_DATA_DIR}/train_answer.jsonl'
-    find_fake_answer_for_file(filename=train_answer_file,
+    find_fake_answer_for_file(filename=train_file,
                               output_file=train_answer_file)
     etime = time.time()
     print(f'used time: {etime - stime}')
