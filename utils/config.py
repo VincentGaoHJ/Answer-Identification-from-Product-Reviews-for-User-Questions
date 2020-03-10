@@ -15,5 +15,10 @@ LOG_LEVEL = 'DEBUG'
 __proj_dir = os.path.dirname(os.path.dirname(__file__))
 DATA_DIR = os.path.join(__proj_dir, 'data')
 
+RAW_DATA_DIR = os.path.join(DATA_DIR, 'raw_data')
+PROCESSED_DATA_DIR = os.path.join(DATA_DIR, 'processed_data')
+RESULT_DIR = os.path.join(DATA_DIR, 'result')
+MODEL_DIR = os.path.join(DATA_DIR, 'model')
+
 if __name__ == '__main__':
     pass
