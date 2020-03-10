@@ -10,7 +10,7 @@ import os
 import csv
 import pandas as pd
 from utils.data_porter import save_to_csv
-from code.vincent_model.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
+from utils.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
 
 context_df = pd.DataFrame(columns=["docid", "text"])
 context_path = os.path.join(RAW_DATA_DIR, "NCPPolicies_context_20200301.csv")
