@@ -28,7 +28,7 @@ import time
 from collections import Counter
 from tqdm import tqdm
 from multiprocessing import Pool
-from code.vincent_model.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
+from utils.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
 
 
 def precision_recall_f1(prediction, ground_truth):
