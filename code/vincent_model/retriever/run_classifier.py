@@ -660,4 +660,18 @@ def main():
 
 
 if __name__ == "__main__":
+    import os
+    import sys
+    from utils.config import DATA_DIR, RETRIEVER_DATA_DIR, RETRIEVER_OUTPUT_DIR
+
+    model_name = "chinese_L-12_H-768_A-12"
+    model_path = os.path.join(DATA_DIR, model_name)
+    sys.argv[1:] = ["--bert_model={}".format(model_name),
+                    "--data_dir={}".format(RETRIEVER_DATA_DIR),
+                    "--task_name=MRPC",
+                    "--do_train",
+                    "--train_batch_size=8",
+                    "--output_dir={}".format(RETRIEVER_OUTPUT_DIR)]
+
+
     main()
