@@ -19,6 +19,8 @@ RAW_DATA_DIR = os.path.join(DATA_DIR, 'raw_data')
 PROCESSED_DATA_DIR = os.path.join(DATA_DIR, 'processed_data')
 RESULT_DIR = os.path.join(DATA_DIR, 'result')
 MODEL_DIR = os.path.join(DATA_DIR, 'model')
+RETRIEVER_DATA_DIR = os.path.join(DATA_DIR, 'retriever_data')
+RETRIEVER_OUTPUT_DIR = os.path.join(DATA_DIR, 'retriever_output')
 
 if __name__ == '__main__':
     pass
