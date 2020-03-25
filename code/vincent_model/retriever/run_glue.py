@@ -58,6 +58,7 @@ from transformers import (
     XLNetTokenizer,
     get_linear_schedule_with_warmup,
 )
+
 from transformers import glue_compute_metrics as compute_metrics
 from transformers import glue_convert_examples_to_features as convert_examples_to_features
 from transformers import glue_output_modes as output_modes
@@ -703,7 +704,8 @@ if __name__ == "__main__":
     from utils.config import DATA_DIR, RETRIEVER_DATA_DIR, RETRIEVER_OUTPUT_DIR
 
     model_name = "chinese_wwm_ext_pytorch_glue"
-    model_path = os.path.join(DATA_DIR, model_name)
+    # model_path = os.path.join(DATA_DIR, model_name)
+    model_path = f"{DATA_DIR}/{model_name}"
     sys.argv[1:] = ["--model_type=bert",
                     "--model_name_or_path={}".format(model_path),
                     "--task_name=MRPC",
@@ -715,6 +717,7 @@ if __name__ == "__main__":
                     "--num_train_epochs=3.0",
                     "--output_dir={}".format(RETRIEVER_OUTPUT_DIR),
                     "--overwrite_output_dir",
-                    "--overwrite_cache"]
+                    "--overwrite_cache",
+                    "--save_steps=50000"]
 
     main()
