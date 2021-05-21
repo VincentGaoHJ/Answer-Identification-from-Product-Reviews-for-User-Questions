@@ -49,7 +49,7 @@ tb-nightly==2.2.0a20200304
 tensorboard==2.0.2
 tensorboard-plugin-wit==1.6.0.post2
 tensorboardX==2.0
-tensorflow==2.0.0
+tensorflow==2.5.0
 tensorflow-cpu==2.1.0
 tensorflow-estimator==2.0.1
 termcolor==1.1.0
